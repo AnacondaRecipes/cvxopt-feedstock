@@ -1,4 +1,4 @@
-{% set version = "1.2.0" %}
+{% set version = "1.2.6" %}
 
 package:
   name: cvxopt
@@ -6,14 +6,14 @@ package:
 
 source:
   - url: https://pypi.io/packages/source/c/cvxopt/cvxopt-{{ version }}.tar.gz
-    sha256: 3296c9d49b7dcb894b20db5d7d1c1a443912b4d82358e03f836575e8398e0d60
+    sha256: a4c433706fd0ad9d47e7f222773a7f7601766fb8e74b633524b3c3fce29aa73e
     patches:
       - 0001-define-DLL-preprocessors-on-windows.patch
       - 0002-fix-setting-complex-vars-on-win.patch            # [win]
 
   # on windows, building suitesparse in directly works much better than trying to build it separately and link it in
   - url: http://faculty.cse.tamu.edu/davis/SuiteSparse/SuiteSparse-5.2.0.tar.gz           # [win]
-    sha256: 3c46c035ea8217649958a0f73360e825b0c9dcca4e32a9349d2c7678c0d48813              # [win]
+    sha256: a4c433706fd0ad9d47e7f222773a7f7601766fb8e74b633524b3c3fce29aa73e              # [win]
     folder: suitesparse                                                                   # [win]
 
 build:
