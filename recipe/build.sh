@@ -33,4 +33,7 @@ export CVXOPT_GLPK_INC_DIR="${PREFIX}/include"
 export CVXOPT_SUITESPARSE_LIB_DIR="${PREFIX}/lib"
 export CVXOPT_SUITESPARSE_INC_DIR="${PREFIX}/include"
 
+export CFLAGS="${CFLAGS} -Wno-return-type"
+export CXXFLAGS="${CXXFLAGS} -Wno-return-type"
+
 $PYTHON setup.py install --single-version-externally-managed --record=record.txt

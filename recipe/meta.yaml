@@ -7,6 +7,8 @@ package:
 source:
   - url: https://pypi.io/packages/source/c/cvxopt/cvxopt-{{ version }}.tar.gz
     sha256: a4c433706fd0ad9d47e7f222773a7f7601766fb8e74b633524b3c3fce29aa73e
+    patches:
+      - fix_frame.diff
 
   # on windows, building suitesparse in directly works much better than trying to build it separately and link it in
   - url: http://faculty.cse.tamu.edu/davis/SuiteSparse/SuiteSparse-5.2.0.tar.gz           # [win]
@@ -21,7 +23,8 @@ build:
 requirements:
   build:
     - {{ compiler("c") }}
-    # - c99-to-c89                     # [win and vc<14]
+    - patch     # [not win]
+    - m2-patch  # [win]
   host:
     - dsdp
     - fftw                           # [blas_impl != "mkl"]
