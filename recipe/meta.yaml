@@ -17,6 +17,8 @@ build:
   number: 0
   skip: True  # [blas_impl == 'openblas' and win]
   skip: True  # [win and py<35]
+  # insufficient dependencies on these platforms
+  skip: True  # [ppc64le or s390x]
 
 requirements:
   build:
