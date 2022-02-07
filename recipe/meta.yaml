@@ -16,7 +16,7 @@ source:
 build:
   number: 0
   skip: True  # [blas_impl == 'openblas' and win]
-  skip: true  # [win and py<35]
+  skip: True  # [win and py<35]
 
 requirements:
   build:
