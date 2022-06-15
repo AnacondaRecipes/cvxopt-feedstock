@@ -16,7 +16,7 @@ source:
     folder: suitesparse                                                                   # [win]
 
 build:
-  number: 0
+  number: 1
   skip: True  # [blas_impl == 'openblas' and win]
   skip: true  # [win and py<35]
 
@@ -27,7 +27,8 @@ requirements:
     - m2-patch  # [win]
   host:
     - dsdp
-    - fftw                           # [blas_impl != "mkl"]
+    # we need fftw for mkl too, as it is used as link option during build too
+    - fftw
     - glpk
     - gsl
     - mkl-devel  {{ mkl }}           # [blas_impl == "mkl"]
