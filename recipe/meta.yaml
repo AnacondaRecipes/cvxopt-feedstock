@@ -20,7 +20,8 @@ build:
   # trigger: 0
   skip: True  # [blas_impl == 'openblas' and win]
   skip: true  # [win and py<35]
-
+  ignore_run_exports:  # [win]
+    - glpk             # [win]
 requirements:
   build:
     - {{ compiler("c") }}
