@@ -44,7 +44,7 @@ requirements:
     - fftw
     - dsdp
     - glpk
-    - suitesparse   # [not win]
+    - suitesparse                    # [unix]
 
 test:
   imports:
