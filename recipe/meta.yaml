@@ -16,10 +16,14 @@ source:
     folder: suitesparse                                                                   # [win]
 
 build:
-  number: 0
+  number: 1
+  # trigger: 1
   skip: True  # [blas_impl == 'openblas' and win]
   skip: true  # [win and py<35]
-
+  # no suitesparse support on s390x
+  skip: true  # [s390x]
+  ignore_run_exports:  # [win]
+    - glpk             # [win]
 requirements:
   build:
     - {{ compiler("c") }}
@@ -27,7 +31,8 @@ requirements:
     - m2-patch  # [win]
   host:
     - dsdp
-    - fftw                           # [blas_impl != "mkl"]
+    # we need fftw for mkl too, as it is used as link option during build too
+    - fftw
     - glpk
     - gsl
     - mkl-devel  {{ mkl }}           # [blas_impl == "mkl"]
@@ -43,7 +48,7 @@ requirements:
     - fftw
     - dsdp
     - glpk
-    - suitesparse   # [not win]
+    - suitesparse                    # [unix]
 
 test:
   imports:
