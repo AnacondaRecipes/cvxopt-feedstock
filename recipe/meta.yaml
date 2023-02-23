@@ -27,7 +27,6 @@ build:
 requirements:
   build:
     - {{ compiler("c") }}
-    - patch     # [not win]
     - m2-patch  # [win]
   host:
     - python
@@ -52,26 +51,20 @@ requirements:
     - suitesparse                    # [unix]
 
 test:
-  imports:
-    - cvxopt
-    - cvxopt.base
-    - cvxopt.blas
-    - cvxopt.cholmod
-    - cvxopt.lapack
-    - cvxopt.misc_solvers
-    - cvxopt.umfpack
-    - cvxopt.glpk
-    - cvxopt.fftw
   source_files:
     - tests/*
     - examples/*
   requires:
     - pytest
+    - pip
+  commands:
+    - pip check
 
 about:
   home: https://cvxopt.org
   license: GPL-3.0-or-later
   license_file: LICENSE
+  license_family: GPL
   summary: Convex optimization package
   description: |
     Python Software for Convex Optimization
