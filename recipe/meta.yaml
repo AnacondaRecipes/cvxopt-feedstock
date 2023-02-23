@@ -18,8 +18,8 @@ source:
 
 build:
   number: 0
-  skip: True  # [blas_impl == 'openblas' and win]
-  skip: true  # [win and py<35]
+  # mkl is incompatible with GPL
+  skip: True  # [blas_impl == 'mkl']
   # no suitesparse support on s390x
   skip: true  # [s390x]
   ignore_run_exports:  # [win]
@@ -34,11 +34,9 @@ requirements:
     - pip
     - wheel  
     - dsdp 5.8
-    # we need fftw for mkl too, as it is used as link option during build too
     - fftw 3.3.9
     - glpk 4.65
     - gsl 2.7.1
-    - mkl-devel  {{ mkl }}           # [blas_impl == "mkl"]
     - openblas-devel {{ openblas }}  # [blas_impl == "openblas"]
     # suitesparse is linked against on windows, and compiled-in on windows, because yeah, windows.
     - suitesparse 5.10.1            # [not win]
