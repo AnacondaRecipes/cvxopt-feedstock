@@ -22,9 +22,14 @@ if "%blas_impl%" == "mkl" (
 )
 
 set CVXOPT_BUILD_GLPK=1
-set "CVXOPT_GLPK_LIB_DIR=%LIBRARY_LIB%"
-set "CVXOPT_GLPK_INC_DIR=%LIBRARY_INC%"
+set "CVXOPT_GLPK_LIB_DIR=%LIBRARY_PREFIX%\lib"
+set "CVXOPT_GLPK_INC_DIR=%LIBRARY_PREFIX%\include"
 
+set CVXOPT_BUILD_DSDP=1
+set "CVXOPT_DSDP_LIB_DIR=%LIBRARY_PREFIX%\lib"
+set "CVXOPT_DSDP_INC_DIR=%LIBRARY_PREFIX%\include"
+
+:: recipe/meta.yaml downloads the suitesparse-sources to this folder; build it
 set "CVXOPT_SUITESPARSE_SRC_DIR=%SRC_DIR%\suitesparse"
 :: set "CVXOPT_SUITESPARSE_LIB_DIR=%LIBRARY_LIB%"
 :: set "CVXOPT_SUITESPARSE_INC_DIR=%LIBRARY_INC%\suitesparse"
@@ -40,4 +45,6 @@ IF "%vc%" LSS "14" (
 
 set "CVXOPT_MSVC=1"
 
-%PYTHON% setup.py install --single-version-externally-managed --record=record.txt
+%PYTHON% -m pip install . --no-deps -vv
+
+copy src\C\cvxopt.h %LIBRARY_PREFIX%\include
