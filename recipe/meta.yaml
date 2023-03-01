@@ -1,4 +1,5 @@
-{% set version = "1.2.6" %}
+{% set version = "1.3.0" %}
+{% set suitesparse_for_win_version = "5.7.2" %}
 
 package:
   name: cvxopt
@@ -6,20 +7,19 @@ package:
 
 source:
   - url: https://pypi.io/packages/source/c/cvxopt/cvxopt-{{ version }}.tar.gz
-    sha256: a4c433706fd0ad9d47e7f222773a7f7601766fb8e74b633524b3c3fce29aa73e
-    patches:
-      - fix_frame.diff
+    sha256: 00b1b232f9d1f902d578a9d75814b67fa020758d5ae422e28ca8cef6269fa5c6
 
   # on windows, building suitesparse in directly works much better than trying to build it separately and link it in
-  - url: http://faculty.cse.tamu.edu/davis/SuiteSparse/SuiteSparse-5.2.0.tar.gz           # [win]
-    sha256: 3c46c035ea8217649958a0f73360e825b0c9dcca4e32a9349d2c7678c0d48813              # [win]
-    folder: suitesparse                                                                   # [win]
+  - url: https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/v{{ suitesparse_for_win_version }}.tar.gz  # [win]
+    sha256: fe3bc7c3bd1efdfa5cffffb5cebf021ff024c83b5daf0ab445429d3d741bd3ad  # [win]
+    folder: suitesparse  # [win]
+    patches:   # [win]
+      - 0001-remove-BLAS_NO_UNDERSCORE-on-windows.patch                                                        # [win]
 
 build:
-  number: 1
-  # trigger: 1
-  skip: True  # [blas_impl == 'openblas' and win]
-  skip: true  # [win and py<35]
+  number: 0
+  # mkl is incompatible with GPL
+  skip: True  # [blas_impl == 'mkl']
   # no suitesparse support on s390x
   skip: true  # [s390x]
   ignore_run_exports:  # [win]
@@ -27,21 +27,19 @@ build:
 requirements:
   build:
     - {{ compiler("c") }}
-    - patch     # [not win]
     - m2-patch  # [win]
   host:
-    - dsdp
-    # we need fftw for mkl too, as it is used as link option during build too
-    - fftw
-    - glpk
-    - gsl
-    - mkl-devel  {{ mkl }}           # [blas_impl == "mkl"]
-    - openblas-devel {{ openblas }}  # [blas_impl == "openblas"]
     - python
     - setuptools
+    - pip
+    - wheel  
+    - dsdp 5.8
+    - fftw 3.3.9
+    - glpk 4.65
+    - gsl 2.7.1
+    - openblas-devel {{ openblas }}  # [blas_impl == "openblas"]
     # suitesparse is linked against on windows, and compiled-in on windows, because yeah, windows.
-    - suitesparse                    # [unix]
-
+    - suitesparse 5.10.1            # [not win]
   run:
     - python
     - gsl
@@ -51,25 +49,25 @@ requirements:
     - suitesparse                    # [unix]
 
 test:
-  imports:
-    - cvxopt
-    - cvxopt.base
-    - cvxopt.blas
-    - cvxopt.cholmod
-    - cvxopt.lapack
-    - cvxopt.misc_solvers
-    - cvxopt.umfpack
-    - cvxopt.glpk
-    - cvxopt.fftw
   source_files:
     - tests/*
     - examples/*
+  requires:
+    - pytest
+    - pip
+  commands:
+    - pip check
 
 about:
-  home: http://cvxopt.org
-  license: GPL 3
+  home: https://cvxopt.org
+  license: GPL-3.0-or-later
   license_file: LICENSE
+  license_family: GPL
   summary: Convex optimization package
+  description: |
+    Python Software for Convex Optimization
+  doc_url: https://cvxopt.org/userguide
+  dev_url: https://github.com/cvxopt/cvxopt
 
 extra:
   recipe-maintainers:
