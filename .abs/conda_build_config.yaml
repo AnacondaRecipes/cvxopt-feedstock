@@ -1,8 +1,7 @@
 openblas:
   - 0.3.20
-blas:
-  - 1.0
-libopenblas:
-  - 0.3.20
+blas_impl:
+  - openblas 
+
 #python:
 #  - 3.12
