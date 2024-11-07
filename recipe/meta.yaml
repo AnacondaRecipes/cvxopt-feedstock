@@ -37,6 +37,7 @@ requirements:
     - dsdp
     - glpk
     - wheel
+    - pip
     # suitesparse is linked against on windows, and compiled-in on windows, because yeah, windows.
     - suitesparse          # [not win]
   run:
@@ -66,6 +67,7 @@ test:
     - examples/*
   requires:
     - pytest
+    - pip
 
 about:
   home: https://cvxopt.org
