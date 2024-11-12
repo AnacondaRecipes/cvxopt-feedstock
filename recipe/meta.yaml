@@ -28,8 +28,8 @@ requirements:
   host:
     #    - libblas
     #    - liblapack
-    - openblas
-    - libopenblas
+    - openblas         # [not win]
+    - libopenblas      # [not win]
     - python
     - setuptools
     - gsl
@@ -47,7 +47,7 @@ requirements:
     - dsdp
     - glpk
     - suitesparse          # [not win]
-    - libopenblas
+    - libopenblas          # [not win]
 
 test:
   commands:
