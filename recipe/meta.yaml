@@ -29,7 +29,7 @@ requirements:
     #    - libblas
     #    - liblapack
     - openblas  
-   # - libopenblas
+    - libopenblas
     - python
     - setuptools
     - gsl
@@ -47,7 +47,7 @@ requirements:
     - dsdp
     - glpk
     - suitesparse          # [not win]
-    #- libopenblas 
+    - libopenblas 
 
 test:
   commands:
