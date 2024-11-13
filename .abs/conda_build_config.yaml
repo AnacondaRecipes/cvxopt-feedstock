@@ -1,5 +1,5 @@
 openblas:
-  - 0.3.21
+  - 0.3.23
 blas_impl:
   - openblas 
 #libflang:
