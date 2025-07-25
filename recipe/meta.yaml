@@ -38,7 +38,7 @@ requirements:
     - gsl 2.7.1
     - openblas-devel {{ openblas_devel }}  # [blas_impl == "openblas"]
     # suitesparse is linked against on windows, and compiled-in on windows, because yeah, windows.
-    - suitesparse 7.8.3  # [not win]
+    - suitesparse {{ suitesparse }}  # [not win]
   run:
     - python
     - gsl
