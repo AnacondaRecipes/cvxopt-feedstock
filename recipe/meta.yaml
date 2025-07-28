@@ -17,7 +17,7 @@ source:
       - 0001-remove-BLAS_NO_UNDERSCORE-on-windows.patch                                                        # [win]
 
 build:
-  number: 0
+  number: 1
   # mkl is incompatible with GPL
   skip: True  # [blas_impl == 'mkl']
   ignore_run_exports:  # [win]
