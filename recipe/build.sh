@@ -35,7 +35,7 @@ export CVXOPT_DSDP_LIB_DIR="${PREFIX}/lib"
 export CVXOPT_DSDP_INC_DIR="${PREFIX}/include"
 
 export CVXOPT_SUITESPARSE_LIB_DIR="${PREFIX}/lib"
-export CVXOPT_SUITESPARSE_INC_DIR="${PREFIX}/include"
+export CVXOPT_SUITESPARSE_INC_DIR="${PREFIX}/include/suitesparse"
 
 export CFLAGS="${CFLAGS} -Wno-return-type"
 export CXXFLAGS="${CXXFLAGS} -Wno-return-type"
