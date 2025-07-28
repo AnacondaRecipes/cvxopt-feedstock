@@ -49,6 +49,7 @@ requirements:
 
 test:
   source_files:
+    # examples are required to run tests
     - tests/*
     - examples/*
   requires:
@@ -56,6 +57,7 @@ test:
     - pip
   commands:
     - pip check
+    - pytest -vv tests
 
 about:
   home: https://cvxopt.org
