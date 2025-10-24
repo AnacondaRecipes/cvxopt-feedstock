@@ -26,9 +26,7 @@ build:
 
 requirements:
   build:
-    - {{ stdlib("c") }}
-    - {{ compiler("c") }}
-    - msys2-patch  # [win]
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
   host:
     - python

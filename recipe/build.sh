@@ -40,6 +40,6 @@ export CVXOPT_SUITESPARSE_INC_DIR="${PREFIX}/include/suitesparse"
 export CFLAGS="${CFLAGS} -Wno-return-type"
 export CXXFLAGS="${CXXFLAGS} -Wno-return-type"
 
-$PYTHON -m pip install . --no-deps -vv
+$PYTHON -m pip install . --no-deps -vv --no-build-isolation
 
 cp src/C/cvxopt.h ${PREFIX}/include
