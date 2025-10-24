@@ -45,6 +45,6 @@ IF "%vc%" LSS "14" (
 
 set "CVXOPT_MSVC=1"
 
-%PYTHON% -m pip install . --no-deps -vv
+%PYTHON% -m pip install . --no-deps -vv --no-build-isolation
 
 copy src\C\cvxopt.h %LIBRARY_PREFIX%\include
