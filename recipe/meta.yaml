@@ -19,7 +19,7 @@ source:
   {% endif %}
 
 build:
-  number: 0
+  number: 1
   # mkl is incompatible with GPL
   skip: true  # [blas_impl == 'mkl']
   skip: true  # [py<38]
