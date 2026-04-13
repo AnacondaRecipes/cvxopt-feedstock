@@ -14,8 +14,8 @@ source:
   - url: https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/v{{ suitesparse_for_win_version }}.tar.gz
     sha256: ce39b28d4038a09c14f21e02c664401be73c0cb96a9198418d6a98a7db73a259
     folder: suitesparse
-    patches:
-      - 0001-remove-BLAS_NO_UNDERSCORE-on-windows.patch
+    # patches:
+    #   - 0001-remove-BLAS_NO_UNDERSCORE-on-windows.patch
   {% endif %}
 
 build:
