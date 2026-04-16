@@ -29,10 +29,8 @@ set CVXOPT_BUILD_DSDP=1
 set "CVXOPT_DSDP_LIB_DIR=%LIBRARY_PREFIX%\lib"
 set "CVXOPT_DSDP_INC_DIR=%LIBRARY_PREFIX%\include"
 
-:: recipe/meta.yaml downloads the suitesparse-sources to this folder; build it
-set "CVXOPT_SUITESPARSE_SRC_DIR=suitesparse"
-:: set "CVXOPT_SUITESPARSE_LIB_DIR=%LIBRARY_LIB%"
-:: set "CVXOPT_SUITESPARSE_INC_DIR=%LIBRARY_INC%\suitesparse"
+set "CVXOPT_SUITESPARSE_LIB_DIR=%LIBRARY_LIB%"
+set "CVXOPT_SUITESPARSE_INC_DIR=%LIBRARY_INC%\suitesparse"
 
 IF "%vc%" LSS "14" (
    set C99_TO_C89_WRAP_DEBUG_LEVEL=1
