@@ -30,7 +30,7 @@ set "CVXOPT_DSDP_LIB_DIR=%LIBRARY_PREFIX%\lib"
 set "CVXOPT_DSDP_INC_DIR=%LIBRARY_PREFIX%\include"
 
 :: recipe/meta.yaml downloads the suitesparse-sources to this folder; build it
-set "CVXOPT_SUITESPARSE_SRC_DIR=%SRC_DIR%\suitesparse"
+set "CVXOPT_SUITESPARSE_SRC_DIR=suitesparse"
 :: set "CVXOPT_SUITESPARSE_LIB_DIR=%LIBRARY_LIB%"
 :: set "CVXOPT_SUITESPARSE_INC_DIR=%LIBRARY_INC%\suitesparse"
 
@@ -46,5 +46,6 @@ IF "%vc%" LSS "14" (
 set "CVXOPT_MSVC=1"
 
 %PYTHON% -m pip install . --no-deps -vv --no-build-isolation
+if errorlevel 1 exit 1
 
 copy src\C\cvxopt.h %LIBRARY_PREFIX%\include
