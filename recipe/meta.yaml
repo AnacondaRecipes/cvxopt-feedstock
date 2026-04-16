@@ -1,6 +1,5 @@
 {% set version = "1.3.3" %}
 {% set name = "cvxopt" %}
-{% set suitesparse_for_win_version = "7.8.3" %}
 
 package:
   name: {{ name }}
@@ -9,14 +8,10 @@ package:
 source:
   - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
     sha256: 8059cef41f1f115c87bc9b75fec9f86db95e7f0afcf03a52d619ba433e443bcb
-  # on windows, building suitesparse in directly works much better than trying to build it separately and link it in
-  - url: https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/v{{ suitesparse_for_win_version }}.tar.gz  # [win]
-    sha256: ce39b28d4038a09c14f21e02c664401be73c0cb96a9198418d6a98a7db73a259  # [win]
-    folder: suitesparse  # [win]
 
 
 build:
-  number: 1
+  number: 2
   # mkl is incompatible with GPL
   skip: true  # [blas_impl == 'mkl']
   ignore_run_exports:  # [win]
@@ -36,15 +31,14 @@ requirements:
     - glpk {{ glpk }}
     - gsl {{ gsl }}
     - openblas-devel {{ openblas_devel }}  # [blas_impl == "openblas"]
-    # suitesparse is linked against on windows, and compiled-in on windows, because yeah, windows.
-    - suitesparse {{ suitesparse }}  # [not win]
+    - suitesparse {{ suitesparse }}
   run:
     - python
     - gsl
     - fftw
     - dsdp
     - glpk
-    - suitesparse  # [unix]
+    - suitesparse
 
 test:
   source_files:
